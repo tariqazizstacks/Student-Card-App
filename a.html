@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body
+<form id="box">
+  <input type="text" id="name" placeholder="Enter your name">
+  <input type="text" id="father" placeholder="Enter your father name">
+  <input type="number" id="num" placeholder="Enter your age">
+  <input type="text" id="cnic" placeholder="Enter your cnic">
+  <input type="text" id="class" placeholder="Your Grade">
+  <input type="file" id="file" accept="image/*">
+  <button>Submit</button>
+  <div id="divforcard"></div>
+</form>
+
+<script>
+  let name=document.getElementById("name");
+  let father=document.getElementById("father");
+  let num=document.getElementById("num");
+  let grade=document.getElementById("class");
+  let file=document.getElementById("file");
+  let btn=document.querySelector("button");
+
+  btn.addEventListener("click",()=>{
+    let cardHTML=`
+      <div>
+        <h1>User Card</h1>
+        <p>Name: ${name.value}</p>
+        <p>Father Name: ${father.value}</p>
+        <p>Age: ${num.value}</p>
+        <p>Grade: ${grade.value}</p>
+      </div>`;
+    document.getElementById("divforcard").innerHTML=cardHTML;
+  });
+</script>
+
+    
+</body>
+</html>

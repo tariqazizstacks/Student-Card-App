@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #box{
+            height: 97.3vh;
+            width: 40%;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 3px rgb(0, 0, 0) solid;
+            margin-bottom: 200px;
+        }
+
+    button{
+        margin-top: 13px;
+    }    
+    img{
+        height: 100px;
+        width: 100px;
+    }
+    #file{
+        height:150px;
+        border: 1px rgb(53, 51, 51) solid;
+    }
+    #card{
+        background-image: url("images/bg.png");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 285px;
+        width: 495px;
+        display: flex;
+        flex-direction:row;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        /* align-items:flex-start; */
+        border: 3px red solid;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: black;
+    }
+    
+    .fill{
+
+        height: 30x;
+        width: 400px;
+        font-size: 16px; 
+        color: black;
+        line-height: 40px;
+        display: inline-block;
+        border: 1.5px rgb(53, 51, 51) solid;
+
+    }
+
+    #data{
+        width: 330px;
+        text-align: left;
+        /* border: 3px red solid; */
+        color: #465224;
+        font-size: large;
+        font-weight: bold;
+        
+    }
+
+    #images{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border: 3px red solid; */
+    }
+
+    #btn{
+        height: 60px;
+        width: 130px;
+        font-size: 25px;
+        background-color: black;
+        color: white;
+        border: 2px black solid;
+        border-radius: 15px;
+        margin-bottom: 30px;
+    }
+    /* #images img{
+        height: 30px;
+        width: 30px ;
+        border: 3px red solid;
+    } */
+    /* #qrcode{
+         height: 100px;
+        width: 100px ;
+        border: 3px red solid;
+    } */
+    </style>
+</head>
+<body>
+  
+     <form id="box">
+        <h1>Fill The Form Carefully!</h1>
+        <input type="text" id="name" class="fill" placeholder="Enter your name ">
+        <input type="text" id="father" class="fill" placeholder="Enter your father name ">
+                <input type="text" id="gender" class="fill" placeholder="Enter your gender ">
+        <input type="number" id="num" class="fill" placeholder="Enter your age">
+        <input type="text" id="grade" class="fill" placeholder="Your Grade">
+        <input type="file" id="file" accept="image/*">
+        <button type="button" id="btn">Submit</button>
+    
+    </form>
+    <div id="divforcard"></div>
+
+    <!-- <div id="qrcode"></div> -->
+
+    <script>
+        let nam=document.getElementById("name");
+        let father=document.getElementById("father");
+        let gen=document.getElementById("gender");
+        let num=document.getElementById("num");
+        let grad=document.getElementById("grade");
+        let fil=document.getElementById("file");
+        let btn=document.querySelector("button")
+
+        btn.addEventListener("click",()=>{
+            let imgURL="";
+            if(fil.files[0]){
+                imgURL=URL.createObjectURL(fil.files[0]);
+            }
+
+        let cardHTML= `<div id="card">
+           <div id="data">
+            <h1 style="color:Yellow; ">Student Identity Card</h1>
+            <p><b>Name:${nam.value}</b></p>
+            <p><b>Father Name:${father.value}</b></p>
+            <p><b>Name:${gen.value}</b></p>
+            <p><b>Age:${num.value}</b></p>
+            <p><b>Grade:${grad.value}</b></p>
+            </div>
+
+            <div id="images">
+                <img src="${imgURL}" alt="Profile" style="width:150px; height:150px; border-radius:50%; margin-top=0px;  "><br>
+             <div id="qrcode"></div> <!-- QR code container inside card -->
+            </div>
+            </div>`;
+        document.getElementById("divforcard").innerHTML=cardHTML;
+
+
+    new QRCode(document.getElementById("qrcode"), {
+    text: `Name:${nam.value}, Grade:${grad.value}`,
+    width: 100,
+    height: 100
+  });
+        });
+
+
+
+    </script>
+    <!-- Head ke andar ya body ke end mein -->
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+</body>
+</html>
